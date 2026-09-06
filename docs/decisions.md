@@ -16,6 +16,7 @@ Short log of what's been decided for Mentats and why. Update this as decisions g
 ## Corrected during planning
 
 - **`install.sh` cannot write CCR's provider config directly.** The original spec assumed a file-based config CCR would read; checking CCR's own docs during plan-writing confirmed provider setup is GUI-only (Providers → Add Provider), persisted to an internal SQLite DB, with no documented file or CLI config-import path. `config/ccr-provider-values.md` (originally planned as a JSON file the installer would write) is instead a copy-paste reference for that manual GUI step. install.sh's job stays limited to installing CCR itself and confirming LM Studio is reachable.
+- **`install.sh` checks for `npm`, not Homebrew.** The original prerequisite check required Homebrew, inherited unreflectively from the spec's environmental description of the reference machine rather than from anything the script actually does — install.sh never invokes `brew`. The real dependency is `npm` (to install CCR); on the reference machine that's managed via `fnm`, not Homebrew. Caught after shipping v1, when asked to explain the requirement and finding no real justification for it.
 
 ## Deferred, not rejected
 

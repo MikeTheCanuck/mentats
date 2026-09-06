@@ -36,10 +36,10 @@ Two Claude Code invocations, spawned independently by Maestro per Playbook step 
 
 ## Data flow / install script behavior
 
-1. Check prerequisites: Homebrew present, macOS version.
+1. Check prerequisites: macOS version, npm present.
 2. Install `claude-code-router` globally via npm if not already present.
 3. Detect the local LM Studio server (`http://localhost:1234/v1` by default) and confirm it responds — this is what the manual CCR provider step will point at.
-4. Print the exact values from `config/ccr-provider-values.md` (endpoint, protocol, model list) for the user to enter into CCR's own Providers → Add Provider GUI wizard — install.sh cannot write this config itself; CCR has no file-based or CLI config mechanism, only a GUI persisting to an internal SQLite DB.
+4. Print the path to `config/ccr-provider-values.md` as a pointer for the user to follow, rather than reproducing its values inline — install.sh cannot write this config itself (CCR has no file-based or CLI config mechanism, only a GUI persisting to an internal SQLite DB), and keeping the values in one place avoids the file and the script's output drifting out of sync.
 5. Print next steps: complete the CCR GUI step above, how to install Maestro manually, where the example Playbooks live, and a pointer to `docs/architecture.md` for the "why."
 
 Idempotent: safe to re-run; re-running just re-writes the generated config rather than erroring if it already exists.
@@ -48,11 +48,11 @@ Idempotent: safe to re-run; re-running just re-writes the generated config rathe
 
 - LM Studio not running / unreachable at the expected port: install.sh reports this clearly and exits without writing a broken config, rather than generating a provider config pointing at a dead endpoint.
 - CCR already installed at a different version: warn, don't force-reinstall.
-- Homebrew missing: fail fast with a clear message; v1 doesn't attempt to install Homebrew itself.
+- npm missing: fail fast with a clear message; v1 doesn't attempt to install Node.js itself. (Not Homebrew — install.sh never invokes `brew`; npm is the actual dependency, and on the reference machine it's managed via fnm, not Homebrew.)
 
 ## Testing
 
-- `install.sh` is a shell script gluing together existing tools (npm, brew, curl checks) rather than novel logic — testing is primarily manual verification on a real machine (this is explicitly a single-user, personally-dogfooded project), not a unit-test suite.
+- `install.sh` is a shell script gluing together existing tools (npm, curl checks) rather than novel logic — testing is primarily manual verification on a real machine (this is explicitly a single-user, personally-dogfooded project), not a unit-test suite.
 - The Playbook templates are documentation-as-config; "testing" them means actually running a Playbook against a real low-stakes repo once Maestro is installed, per the original handoff doc's own checklist (not yet done as of this spec).
 
 ## Related prior work
