@@ -2,7 +2,9 @@
 
 ## Pitch
 
-Mentats provisions a single-user, LM Studio-biased local-inference stack for Claude Code, orchestrated by Maestro. Local models handle mechanical "grinding" execution by default; a Maestro Playbook can deliberately let a specific step "pop a Mentat" — run on real Anthropic — when the task genuinely needs judgment. Preserves your Anthropic subscription's usage windows for the work that actually needs them, at zero added cost for everything else.
+The problem this solves is not "save money on tokens" — it's momentum. A $20/month Anthropic subscription's 5-hour usage window turns real, sustained agentic work into stop-and-wait cycles: hit the wall, lose the thread, come back hours later to work that's gone cold. As open-weight models close the gap to "good enough" and token subsidies come off, routing the grind to local compute and reserving frontier models for genuine judgment calls stops being a curiosity and starts being how individuals do what enterprises already have to do with FinOps. See `docs/positioning.md` for the full argument — read that before touching the README, it's the actual thesis, not just backstory.
+
+Mechanically: Mentats provisions a single-user, LM Studio-biased local-inference stack for Claude Code, orchestrated by Maestro. Local models handle mechanical "grinding" execution by default; a Maestro Playbook can deliberately let a specific step "pop a Mentat" — run on real Anthropic — when the task genuinely needs judgment.
 
 Public, MIT-licensed, work-in-the-open project. Intended both as a working tool and as source material for a LinkedIn post series (the posts themselves live on LinkedIn, not in this repo — see `docs/decisions.md`).
 
@@ -14,7 +16,7 @@ Public, MIT-licensed, work-in-the-open project. Intended both as a working tool 
 - `playbooks/ANALYZE.md`, `playbooks/PLAN.md`, `playbooks/IMPLEMENT.md` — example Maestro Playbook documents. These are the actual mechanism: `IMPLEMENT.md` carries `customEnvVars` pointing at CCR/local; `ANALYZE.md`/`PLAN.md` are left unmodified, inheriting Maestro's default (plain Anthropic) agent config. This is "popping a Mentat" — a deliberate, Playbook-authored choice, not a command a human types.
 - `docs/architecture.md` — the real rationale already worked out in prior sessions: why local-by-default, the ToS-compliance boundary (the Anthropic OAuth leg is never proxied through CCR), why Maestro is a dumb relay rather than a smart supervisor, why Maestro projects are scoped one-repo-at-a-time.
 - `docs/decisions.md` — short ADR-style log of what's been decided and why, including what's explicitly deferred.
-- `README.md`, `LICENSE` (MIT), `CONTRIBUTING.md`.
+- `README.md`, `LICENSE` (MIT), `CONTRIBUTING.md`. README leads with the argument in `docs/positioning.md`, not with config instructions. For dependency setup (installing CCR itself, LM Studio, Maestro), the README points to each project's own authoritative docs rather than duplicating install steps that are someone else's moving target to maintain — Mentats documents what it adds on top, not how to install things it doesn't own.
 
 **Explicitly out of scope for v1** (see `docs/decisions.md` for the full deferred list):
 - A manual CLI wrapper (successor to the working `clauder()` shell function) — deferred as a documented fallback, to build only if the Maestro-orchestrated flow proves unreliable to keep running.
