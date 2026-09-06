@@ -3,12 +3,13 @@
 Not everyone can afford frontier models for all their work — and as token
 subsidies come off while open-weight models close the gap to "good enough,"
 routing the grind to local compute and reserving frontier models for real
-judgment calls stops being a curiosity and starts being how individuals do
-what enterprises already have to do with token-spend efficiency.
+judgment calls is increasingly how us lone vibe coders will do what 
+enterprises already have to do with token-spend efficiency.
 
 Concretely: a $20/month Anthropic subscription's 5-hour usage window turns
 sustained agentic work into stop-and-wait cycles. Hit the wall, lose the
-thread, come back hours later to work that's gone cold. Mentats exists to
+thread, come back hours later to work that's gone cold. (I have a hard time 
+remembering what I wanted to do next with these recurring delays.) Mentats exists to
 let local models (via LM Studio) handle the mechanical grind by default,
 while a Maestro Playbook step deliberately "pops a Mentat" — escalates to
 real Anthropic — only when a task genuinely needs judgment, not on a timer
@@ -45,11 +46,12 @@ deferred versus deliberately rejected, and why.
    start LM Studio's local server (Developer tab → Server → Start) — this is
    a separate step from loading a model, and `install.sh` requires the
    server to be running and reachable.
-2. Run `./install.sh`. It checks for Homebrew and macOS, installs CCR if
+2. Run `./install.sh`. It checks for npm and macOS, installs CCR if
    needed, and confirms LM Studio's server is reachable.
 3. Follow [config/ccr-provider-values.md](config/ccr-provider-values.md) to
-   finish CCR's provider setup in its own GUI.
-4. Install [Maestro](https://github.com/RunMaestro/Maestro) from its own
+   finish CCR's provider setup in its own GUI. Until then, this won't facilitate
+   use of local models during the "grind".
+5. Install [Maestro](https://github.com/RunMaestro/Maestro) from its own
    GitHub Releases page, and use the templates in `playbooks/` as a
    starting point for your own Maestro project.
 
