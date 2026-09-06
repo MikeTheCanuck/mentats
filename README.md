@@ -41,14 +41,15 @@ deferred versus deliberately rejected, and why.
 
 ## Setup
 
-1. Install and configure [LM Studio](https://lmstudio.ai) and load a model —
+1. Install and configure [LM Studio]([https://lmstudio.ai](https://lmstudio.ai/download))
+   (not Bionic - that's a complementary harness) and load a model —
    see LM Studio's own docs for this; Mentats doesn't duplicate them. Then
    start LM Studio's local server (Developer tab → Server → Start) — this is
    a separate step from loading a model, and `install.sh` requires the
    server to be running and reachable.
-2. Run `./install.sh`. It checks for npm and macOS, installs CCR if
+3. Run `./install.sh`. It checks for npm and macOS, installs CCR if
    needed, and confirms LM Studio's server is reachable.
-3. Follow [config/ccr-provider-values.md](config/ccr-provider-values.md) to
+4. Follow [config/ccr-provider-values.md](config/ccr-provider-values.md) to
    finish CCR's provider setup in its own GUI. Until then, this won't facilitate
    use of local models during the "grind".
 5. Install [Maestro](https://github.com/RunMaestro/Maestro) from its own
