@@ -12,7 +12,7 @@ Public, MIT-licensed, work-in-the-open project. Intended both as a working tool 
 
 **In scope:**
 - `install.sh` — provisions `claude-code-router` (CCR) and an LM Studio provider config on macOS, fully templated (no machine-specific paths or tokens baked in; derives `$HOME` etc. at install time).
-- `config/ccr-provider.template.json` — sanitized CCR provider config template, standalone reference for anyone who wants to configure this by hand instead of running the installer.
+- `config/ccr-provider-values.md` — the exact values to enter into CCR's own Providers → Add Provider wizard (endpoint, protocol, model names). CCR has no documented file-based or CLI config mechanism — provider setup is GUI-only, persisted to an internal SQLite DB (confirmed against CCR's own GitHub docs) — so this is a copy-paste reference for the manual step, not a file the installer writes for you.
 - `playbooks/ANALYZE.md`, `playbooks/PLAN.md`, `playbooks/IMPLEMENT.md` — example Maestro Playbook documents. These are the actual mechanism: `IMPLEMENT.md` carries `customEnvVars` pointing at CCR/local; `ANALYZE.md`/`PLAN.md` are left unmodified, inheriting Maestro's default (plain Anthropic) agent config. This is "popping a Mentat" — a deliberate, Playbook-authored choice, not a command a human types.
 - `docs/architecture.md` — the real rationale already worked out in prior sessions: why local-by-default, the ToS-compliance boundary (the Anthropic OAuth leg is never proxied through CCR), why Maestro is a dumb relay rather than a smart supervisor, why Maestro projects are scoped one-repo-at-a-time.
 - `docs/decisions.md` — short ADR-style log of what's been decided and why, including what's explicitly deferred.
@@ -38,9 +38,9 @@ Two Claude Code invocations, spawned independently by Maestro per Playbook step 
 
 1. Check prerequisites: Homebrew present, macOS version.
 2. Install `claude-code-router` globally via npm if not already present.
-3. Prompt for or detect the local LM Studio server (`http://localhost:1234/v1` by default) and confirm it responds.
-4. Write a CCR provider config from `config/ccr-provider.template.json`, substituting the detected LM Studio endpoint — no hardcoded paths from this machine.
-5. Print next steps: how to install Maestro manually, where the example Playbooks live, and a pointer to `docs/architecture.md` for the "why."
+3. Detect the local LM Studio server (`http://localhost:1234/v1` by default) and confirm it responds — this is what the manual CCR provider step will point at.
+4. Print the exact values from `config/ccr-provider-values.md` (endpoint, protocol, model list) for the user to enter into CCR's own Providers → Add Provider GUI wizard — install.sh cannot write this config itself; CCR has no file-based or CLI config mechanism, only a GUI persisting to an internal SQLite DB.
+5. Print next steps: complete the CCR GUI step above, how to install Maestro manually, where the example Playbooks live, and a pointer to `docs/architecture.md` for the "why."
 
 Idempotent: safe to re-run; re-running just re-writes the generated config rather than erroring if it already exists.
 

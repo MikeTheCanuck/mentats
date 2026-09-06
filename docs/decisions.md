@@ -13,6 +13,10 @@ Short log of what's been decided for Mentats and why. Update this as decisions g
 - **`install.sh` is fully templated.** No machine-specific paths, usernames, or token file locations get committed — the script derives what it needs at install time. This is a hygiene requirement, not a nice-to-have: an earlier real version of this setup had a literal home-directory path and an identity-token-file path baked into a shell function.
 - **LinkedIn post series content lives outside this repo.** The repo stays focused on the tool; posts are drafted and published on LinkedIn directly and just link back here.
 
+## Corrected during planning
+
+- **`install.sh` cannot write CCR's provider config directly.** The original spec assumed a file-based config CCR would read; checking CCR's own docs during plan-writing confirmed provider setup is GUI-only (Providers → Add Provider), persisted to an internal SQLite DB, with no documented file or CLI config-import path. `config/ccr-provider-values.md` (originally planned as a JSON file the installer would write) is instead a copy-paste reference for that manual GUI step. install.sh's job stays limited to installing CCR itself and confirming LM Studio is reachable.
+
 ## Deferred, not rejected
 
 - **A manual CLI wrapper** (successor to the real, working `clauder()` shell function this project formalizes) that lets a human manually invoke a differently-routed session outside of Maestro entirely. **Explicitly kept as a fallback option to build later** if the Maestro-orchestrated Playbook flow turns out to be unreliable to keep running day to day. Don't forget this exists as an option — it's cheap to add later since the underlying CCR routing config doesn't change, only how it gets invoked.
