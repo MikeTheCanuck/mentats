@@ -1,0 +1,23 @@
+# IMPLEMENT
+
+This is the one step that routes to a local model. Set this Playbook
+task's `customEnvVars` to point Claude Code at CCR's gateway instead of
+Anthropic directly — see `config/ccr-provider-values.md` for how CCR itself
+gets configured, and CCR's own agent-profile docs for the exact env var
+names/values your CCR version expects (they're set per-profile in CCR's
+dashboard, then referenced here).
+
+## Task
+
+Execute PLAN's output exactly. This step should not be making architecture
+or approach decisions — those were already made in PLAN, on the model
+that's actually good at making them. If IMPLEMENT gets stuck on a decision
+PLAN didn't already resolve, that's a signal PLAN wasn't specific enough,
+not a cue to improvise here.
+
+## Exit condition
+
+The plan's changes are made, and whatever verification PLAN specified
+passes. If verification fails in a way that needs real judgment to
+diagnose, escalate back to a human rather than looping on a local model
+alone — v1 has no automated fallback for this.
