@@ -41,7 +41,10 @@ deferred versus deliberately rejected, and why.
 ## Setup
 
 1. Install and configure [LM Studio](https://lmstudio.ai) and load a model —
-   see LM Studio's own docs for this; Mentats doesn't duplicate them.
+   see LM Studio's own docs for this; Mentats doesn't duplicate them. Then
+   start LM Studio's local server (Developer tab → Server → Start) — this is
+   a separate step from loading a model, and `install.sh` requires the
+   server to be running and reachable.
 2. Run `./install.sh`. It checks for Homebrew and macOS, installs CCR if
    needed, and confirms LM Studio's server is reachable.
 3. Follow [config/ccr-provider-values.md](config/ccr-provider-values.md) to

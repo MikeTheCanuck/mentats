@@ -39,7 +39,7 @@ Two Claude Code invocations, spawned independently by Maestro per Playbook step 
 1. Check prerequisites: Homebrew present, macOS version.
 2. Install `claude-code-router` globally via npm if not already present.
 3. Detect the local LM Studio server (`http://localhost:1234/v1` by default) and confirm it responds — this is what the manual CCR provider step will point at.
-4. Print the exact values from `config/ccr-provider-values.md` (endpoint, protocol, model list) for the user to enter into CCR's own Providers → Add Provider GUI wizard — install.sh cannot write this config itself; CCR has no file-based or CLI config mechanism, only a GUI persisting to an internal SQLite DB.
+4. Print the path to `config/ccr-provider-values.md` as a pointer for the user to follow, rather than reproducing its values inline — install.sh cannot write this config itself (CCR has no file-based or CLI config mechanism, only a GUI persisting to an internal SQLite DB), and keeping the values in one place avoids the file and the script's output drifting out of sync.
 5. Print next steps: complete the CCR GUI step above, how to install Maestro manually, where the example Playbooks live, and a pointer to `docs/architecture.md` for the "why."
 
 Idempotent: safe to re-run; re-running just re-writes the generated config rather than erroring if it already exists.

@@ -7,6 +7,20 @@ gets configured, and CCR's own agent-profile docs for the exact env var
 names/values your CCR version expects (they're set per-profile in CCR's
 dashboard, then referenced here).
 
+CCR's default gateway address is `http://127.0.0.1:3456` — confirm this
+against your installed CCR version's own docs, since the default could
+change between versions. Conceptually, the `customEnvVars` block just needs
+an `ANTHROPIC_BASE_URL`-style variable pointed at that address, e.g.:
+
+```
+customEnvVars:
+  ANTHROPIC_BASE_URL: http://127.0.0.1:3456
+```
+
+Treat the port as relatively stable but the exact env var key name(s) as
+more likely to drift — check your CCR version's agent-profile docs for the
+exact key names before relying on this example.
+
 ## Task
 
 Execute PLAN's output exactly. This step should not be making architecture

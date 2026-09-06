@@ -10,8 +10,9 @@ another mid-conversation. Maestro spawns two entirely separate, independent
   plain, unproxied `claude` CLI talking directly to Anthropic. No override,
   no local routing.
 - **IMPLEMENT step** carries a Playbook-level `customEnvVars` override
-  pointing at CCR's gateway, which routes to whichever local LM Studio model
-  is configured. This is the only step that ever touches local inference.
+  pointing at CCR's gateway (`http://127.0.0.1:3456` by default), which
+  routes to whichever local LM Studio model is configured. This is the only
+  step that ever touches local inference.
 
 There's no smart supervisor deciding at runtime which model a given moment
 needs — the judgment call is made once, when the Playbook is written, not
@@ -20,9 +21,12 @@ v1 scope choice, not an oversight.
 
 ## Why the Anthropic OAuth leg is never proxied
 
-Anthropic's terms prohibit routing Claude.ai/Pro/Max OAuth subscription
-tokens through third-party tools outside the official client. CCR is used
-here purely to route to local LM Studio models — the ANALYZE/PLAN steps'
+Routing Claude.ai/Pro/Max OAuth subscription tokens through third-party
+tools outside the official client sits in a gray zone under Anthropic's
+terms — not clearly sanctioned, not clearly forbidden, and not a risk worth
+taking on. Mentats deliberately stays out of that gray zone rather than
+relying on it: CCR is used here purely to route to local LM Studio models —
+the ANALYZE/PLAN steps'
 plain `claude` invocation never passes through CCR's gateway at all. This
 boundary is load-bearing: it's the difference between "using CCR to reach
 local models" (fine) and "using CCR to relay your Anthropic subscription"

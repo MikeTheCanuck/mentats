@@ -12,16 +12,16 @@ echo "== Mentats installer =="
 echo
 
 echo "Checking prerequisites..."
-if ! command -v brew >/dev/null 2>&1; then
-  fail "Homebrew is required but not found. Install it from https://brew.sh, then re-run this script."
-fi
-
 if [[ "$(uname)" != "Darwin" ]]; then
   fail "Mentats v1 is macOS-only. See CONTRIBUTING.md if you want to help add support for your platform."
 fi
 
-echo "  Homebrew: found"
+if ! command -v brew >/dev/null 2>&1; then
+  fail "Homebrew is required but not found. Install it from https://brew.sh, then re-run this script."
+fi
+
 echo "  macOS: confirmed"
+echo "  Homebrew: found"
 echo
 
 echo "Checking claude-code-router..."
@@ -33,6 +33,9 @@ else
     fail "npm is required to install claude-code-router but was not found. Install Node.js (e.g. 'brew install node' or via fnm/nvm), then re-run this script."
   fi
   npm install -g @musistudio/claude-code-router
+  if ! command -v ccr >/dev/null 2>&1; then
+    fail "claude-code-router installed via npm but 'ccr' is not on PATH. Check that npm's global bin directory (run 'npm bin -g' to see it) is on your PATH, then re-run this script."
+  fi
   echo "  claude-code-router: installed"
 fi
 echo
