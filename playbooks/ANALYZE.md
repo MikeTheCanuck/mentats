@@ -9,12 +9,10 @@ model by default.
 
 ## Task
 
-Read the target repository and produce a written understanding of:
-- What the current behavior is, and where it lives (file/line references).
-- What's actually being asked for, distinguished from what was literally
-  requested if they differ.
-- Any constraints discovered by reading the code that weren't visible from
-  the task description alone.
+- [ ] Read the target repository and identify what the current behavior is, with file/line references.
+- [ ] Identify what's actually being asked for, distinguished from what was literally requested if they differ.
+- [ ] Note any constraints discovered by reading the code that weren't visible from the task description alone.
+- [ ] Write up all three findings as a single analysis document.
 
 ## Exit condition
 

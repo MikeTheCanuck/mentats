@@ -7,11 +7,10 @@ judgment-heavy work.
 
 ## Task
 
-Given ANALYZE's output, produce a concrete implementation plan: which
-files change, in what order, and how each change will be verified. The
-plan should be specific enough that IMPLEMENT (running on a local model)
-can execute it without needing to make further judgment calls about
-approach — only about mechanical correctness.
+- [ ] Read ANALYZE's output.
+- [ ] Produce a concrete implementation plan: which files change, and in what order.
+- [ ] Specify how each change will be verified.
+- [ ] Make the plan specific enough that IMPLEMENT (running on a local model) can execute it without needing to make further judgment calls about approach — only about mechanical correctness.
 
 ## Exit condition
 

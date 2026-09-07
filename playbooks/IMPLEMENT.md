@@ -23,11 +23,9 @@ exact key names before relying on this example.
 
 ## Task
 
-Execute PLAN's output exactly. This step should not be making architecture
-or approach decisions — those were already made in PLAN, on the model
-that's actually good at making them. If IMPLEMENT gets stuck on a decision
-PLAN didn't already resolve, that's a signal PLAN wasn't specific enough,
-not a cue to improvise here.
+- [ ] Execute PLAN's output exactly — no new architecture or approach decisions here; those were already made in PLAN, on the model that's actually good at making them. If IMPLEMENT gets stuck on a decision PLAN didn't already resolve, that's a signal PLAN wasn't specific enough, not a cue to improvise.
+- [ ] Run whatever verification PLAN specified.
+- [ ] If verification fails in a way that needs real judgment to diagnose, stop and escalate to a human rather than looping on a local model alone — v1 has no automated fallback for this.
 
 ## Exit condition
 
