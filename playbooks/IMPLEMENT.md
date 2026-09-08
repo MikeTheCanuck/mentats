@@ -21,10 +21,16 @@ Treat the port as relatively stable but the exact env var key name(s) as
 more likely to drift — check your CCR version's agent-profile docs for the
 exact key names before relying on this example.
 
+This step also runs in its own fresh session with no memory of ANALYZE or
+PLAN's conversations. `{{AUTORUN_FOLDER}}/Working/plan.md`, written by
+PLAN, is the only real source of what to do — read it before doing
+anything else.
+
 ## Task
 
-- [ ] Execute PLAN's output exactly — no new architecture or approach decisions here; those were already made in PLAN, on the model that's actually good at making them. If IMPLEMENT gets stuck on a decision PLAN didn't already resolve, that's a signal PLAN wasn't specific enough, not a cue to improvise.
-- [ ] Run whatever verification PLAN specified.
+- [ ] Read `{{AUTORUN_FOLDER}}/Working/plan.md`. If it doesn't exist, stop and report this — it means PLAN never ran or never wrote its file; do not guess at what the plan might have been.
+- [ ] Execute that plan's contents exactly — no new architecture or approach decisions here; those were already made in PLAN, on the model that's actually good at making them. If IMPLEMENT gets stuck on a decision the plan didn't already resolve, that's a signal PLAN wasn't specific enough, not a cue to improvise.
+- [ ] Run whatever verification the plan specified.
 - [ ] If verification fails in a way that needs real judgment to diagnose, stop and escalate to a human rather than looping on a local model alone — v1 has no automated fallback for this.
 
 ## Exit condition
