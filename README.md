@@ -18,6 +18,7 @@ and not because you ran out of tokens mid-thought.
 Full argument: [docs/positioning.md](docs/positioning.md).
 How it actually works under the hood: [docs/architecture.md](docs/architecture.md).
 What's decided, deferred, and rejected, and why: [docs/decisions.md](docs/decisions.md).
+Where live end-to-end testing actually stands right now: [docs/testing-status.md](docs/testing-status.md).
 
 ## What this is
 
