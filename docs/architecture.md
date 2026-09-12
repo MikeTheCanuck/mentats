@@ -9,10 +9,15 @@ another mid-conversation. Maestro spawns two entirely separate, independent
 - **ANALYZE / PLAN steps** inherit Maestro's default agent config — the
   plain, unproxied `claude` CLI talking directly to Anthropic. No override,
   no local routing.
-- **IMPLEMENT step** carries a Playbook-level `customEnvVars` override
-  pointing at CCR's gateway (`http://127.0.0.1:3456` by default), which
-  routes to whichever local LM Studio model is configured. This is the only
-  step that ever touches local inference.
+- **IMPLEMENT step** is dispatched to a separate Maestro Agent whose
+  `customEnvVars` point at CCR's gateway (`http://127.0.0.1:3456` by
+  default), which routes to whichever local LM Studio model is configured.
+  `customEnvVars` lives on the agent, not the Playbook document — a
+  document can't set environment variables itself. Dispatching that agent
+  specifically requires Auto Run's "Open in Maestro" option; "Create New
+  Worktree" and "Available Worktrees" both copy the *parent* agent's
+  environment instead of using a different one. This is the only step that
+  ever touches local inference.
 
 There's no smart supervisor deciding at runtime which model a given moment
 needs — the judgment call is made once, when the Playbook is written, not
